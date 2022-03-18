@@ -1,0 +1,34 @@
+.search {
+  display: flex;
+  margin: 10px 0;
+  height: 40px;
+}
+.search-input {
+  width: 100%;
+  padding: 5px;
+}
+.search-btn {
+  padding: 5px;
+  background: rgb(135, 200, 192);
+}
+.isfetching {
+  width: 90px;
+  height: 90px;
+  border: 2px dashed red;
+  border-radius: 100%;
+  margin: 0 auto;
+  margin-top: 100px;
+  animation-name: fetching;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+@keyframes fetching {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) scale(1.3);
+  }
+}
