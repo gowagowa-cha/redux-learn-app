@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink, Link } from "react-router-dom";
 import "./Repo.css";
 
 const Repo = ({ repo }) => {
@@ -6,7 +7,7 @@ const Repo = ({ repo }) => {
   return (
     <div className="repo">
       <div className="repo_header">
-        <div className="repo_header-name">Название репозитория: {repo.name}</div>
+        <div className="repo_header-name"><Link to={'/card'}>{repo.name}</Link></div>
         <div className="repo_header-stars">Количество звезд: {repo.stargazers_count}</div>
       </div>
 

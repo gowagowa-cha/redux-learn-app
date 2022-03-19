@@ -1,8 +1,9 @@
 import "./app.css";
 import React from "react";
 import { useDispatch } from "react-redux";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Invoices } from "react-router-dom";
 import Main from "../main/Main";
+import Card from "./Card.jsx";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -12,6 +13,8 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Main />} />
+          <Route path="/card" element={<Card />} />
+          <Route path="*" element={<Main />} />
         </Routes>
       </BrowserRouter>
     </div>
