@@ -1,0 +1,12 @@
+.card{
+  display: flex;
+  margin-top: 10px;
+}
+.name {
+  font-size: 20px;
+  font-weight: 700;
+  margin-left: 10px;
+}
+.stars {
+  margin-left: auto;
+}

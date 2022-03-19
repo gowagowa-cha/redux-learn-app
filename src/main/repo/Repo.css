@@ -18,13 +18,14 @@ a{
 .repo_header-name {
   font-weight: 500;
   font-size: 25px;
+  margin-bottom: 30px;
 }
 .repo_last-commit {
   display: flex;
-  justify-content: end;
+  justify-content: start;
   margin-bottom: 20px;
 }
 .repo-link{
   display: flex;
-  justify-content: end;
+  justify-content: start;
 }
