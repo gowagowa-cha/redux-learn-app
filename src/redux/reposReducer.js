@@ -1,6 +1,7 @@
 const SET_REPOS = "SET_REPOS";
 const SET_ISFETCHING = "SET_ISFETCHING";
 const SET_CURRENTPAGE = "SET_CURRENTPAGE";
+const SET_ISFETCHERROR = "SET_ISFETCHERROR";
 
 const initialState = {
   items: [],
@@ -8,6 +9,7 @@ const initialState = {
   currentPage: 1,
   perPage: 10,
   totalCount: 0,
+  isFetchError: false,
 };
 
 export const reposReducer = (state = initialState, action) => {
@@ -27,8 +29,13 @@ export const reposReducer = (state = initialState, action) => {
     case SET_CURRENTPAGE:
       return {
         ...state,
-        currentPage: action.payload
-      }
+        currentPage: action.payload,
+      };
+    case SET_ISFETCHERROR:
+      return {
+        ...state,
+        isFetchError: action.payload,
+      };
 
     default:
       return state;
@@ -38,3 +45,4 @@ export const reposReducer = (state = initialState, action) => {
 export const setReposAction = (repos) => ({ type: SET_REPOS, payload: repos });
 export const setFetchingAction = (bool) => ({ type: SET_ISFETCHING, payload: bool });
 export const setCurrentPageAction = (page) => ({ type: SET_CURRENTPAGE, payload: page });
+export const setIsFetchErrorAction = (bool) => ({ type: SET_ISFETCHERROR, payload: bool });

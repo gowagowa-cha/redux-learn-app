@@ -15,24 +15,29 @@ const Main = () => {
   const currentPage = useSelector((state) => state.repos.currentPage);
   const perPage = useSelector((state) => state.repos.perPage);
   const totalCount = useSelector((state) => state.repos.totalCount);
+  const isFetchError = useSelector((state) => state.repos.isFetchError);
   const [searchValue, setSearchValue] = React.useState("");
-  const pagesCount = Math.ceil(totalCount/perPage)
+  const pagesCount = Math.ceil(totalCount / perPage);
   const pages = [];
 
-  createPages(pages, pagesCount, currentPage)
-  
+  createPages(pages, pagesCount, currentPage);
 
   React.useEffect(() => {
     dispatch(getRepos(searchValue, currentPage, perPage));
   }, [currentPage]);
 
   const searchHandler = () => {
-    dispatch(setCurrentPageAction(1))
+    dispatch(setCurrentPageAction(1));
     dispatch(getRepos(searchValue, currentPage, perPage));
   };
 
   return (
     <>
+      {isFetchError && (
+        <div class="alert alert-info" role="alert">
+          Произошла ошибка! Пожалуйста перезагрузите страницу!
+        </div>
+      )}
       <form className="search">
         <input
           value={searchValue}

@@ -1,16 +1,24 @@
 import axios from "axios";
-import { setFetchingAction, setReposAction } from "../redux/reposReducer";
+import { setFetchingAction, setIsFetchErrorAction, setReposAction } from "../redux/reposReducer";
 
 export const getRepos = (searchQuery = "stars:%3E1", currentPage, perPage) => {
   if (searchQuery == "") {
     searchQuery = "stars:%3E1";
   }
   return async (dispatch) => {
-    dispatch(setFetchingAction(true));
-    const res = await axios.get(
-      `https://api.github.com/search/repositories?q=${searchQuery}&sort=stars&per_page=${perPage}&page=${currentPage}`,
-    );
-    dispatch(setReposAction(res.data));
+    try {
+      dispatch(setFetchingAction(true));
+      const res = await axios.get(
+        `https://api.github.com/search/repositories?q=${searchQuery}&sort=stars&per_page=${perPage}&page=${currentPage}`,
+      );
+      dispatch(setReposAction(res.data));
+    } catch (error) {
+      dispatch(setIsFetchErrorAction(true));
+      dispatch(setFetchingAction(false));
+      setTimeout(() => {
+        dispatch(setIsFetchErrorAction(false));
+      }, 3000);
+    }
   };
 };
 
